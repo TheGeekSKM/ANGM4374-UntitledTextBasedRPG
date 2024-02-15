@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2593acf245b61f7458e140dcbe93b1a2, type: 3}
+  m_Name: Harsha_DM0
+  m_EditorClassIdentifier: 
+  MomentName: Initial Moment
+  MomentInteractionNum: 0
+  DialogueLines:
+  - {fileID: 11400000, guid: 2871064bda7bbbd418c0f2a45d27bb90, type: 2}
+  - {fileID: 11400000, guid: 97415e7b5b8316848af51e42f0787352, type: 2}
+  - {fileID: 11400000, guid: d4bdf16b3dc88004c833050017c48b1d, type: 2}
+  - {fileID: 11400000, guid: 3b3fc35ad760c9d4c995a470127f0ac6, type: 2}
+  - {fileID: 11400000, guid: 10c21b674d0ef2a44afb48751ac80282, type: 2}
+  - {fileID: 11400000, guid: f279573bdcbc3694689f9257f5f069c2, type: 2}
+  - {fileID: 11400000, guid: ee2ac8335d0735846a00fbe2c5c5b101, type: 2}
+  - {fileID: 11400000, guid: 56e430df77bb59e40b48a276553cb43c, type: 2}
+  - {fileID: 11400000, guid: b17ac5e80ba04c74d98da6079f6bf07d, type: 2}
+  - {fileID: 11400000, guid: 1ea5d423ba101354d8726c88fed727eb, type: 2}
