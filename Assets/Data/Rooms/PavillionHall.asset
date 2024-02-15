@@ -12,8 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa25556983e94843b39becd80a54e37, type: 3}
   m_Name: PavillionHall
   m_EditorClassIdentifier: 
-  RoomName: PavillionHall
-  StartingRoomDescription: 
-  RoomDescription: 
-  ConnectedRooms: []
+  RoomName: MainHall
+  StartingRoomDescription: 'The air suddenly felt different as I pushed through.
+    I could feel the humidity of the air on my exposed flesh. From the echo of my
+    footsteps, this room seems to be of medium size. I definitely have been in larger
+    rooms. I''ll call this room Main Hall...
+
+
+    I guess I just gotta feel my way
+    around it. I''ll definitely know I''m doing something wrong if I bump into a
+    wall. '
+  RoomDescription: I'm in the Main Hall now.
   NPCs: []
+  discovered: 1

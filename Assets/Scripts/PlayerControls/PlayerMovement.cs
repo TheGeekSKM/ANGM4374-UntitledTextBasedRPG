@@ -9,11 +9,31 @@ public class PlayerMovement : MonoBehaviour
     bool _move = false;
     public bool IsMoving => _move;
 
+    Vector3 _moveDirection;
+
     void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
     }
 
+    void Start()
+    {
+        _moveDirection = new Vector3(0, 0, -1); // forward
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Walls"))
+        {
+            HitWall();
+        }
+    }
+
+    void HitWall()
+    {
+        _move = false;
+        GameController.Instance.AddNotification("I hit a wall!");
+    }
 
     public void MoveForward()
     {
@@ -27,19 +47,20 @@ public class PlayerMovement : MonoBehaviour
 
     public void TurnLeft()
     {
-        transform.Rotate(Vector3.up, -90);
+        _moveDirection = Quaternion.Euler(0, -90, 0) * _moveDirection;
     }
 
     public void TurnRight()
     {
-        transform.Rotate(Vector3.up, 90);
+        _moveDirection = Quaternion.Euler(0, 90, 0) * _moveDirection;
     }
 
     void FixedUpdate()
     {
         if (_move)
         {
-            _rigidbody.velocity = new Vector3(0, 0, moveSpeed);
+            // adds velocity to the rigidbody in local space
+            _rigidbody.velocity = _moveDirection * moveSpeed;
         }
         else
         {

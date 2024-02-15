@@ -25,5 +25,6 @@ public class GameFSM : StateMachineMB
     void Start()
     {
         ChangeState(GameDialogueState, .5f);
+        // ChangeState(GamePlayState, 0.5f);
     }
 }
