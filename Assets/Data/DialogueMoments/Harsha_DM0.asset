@@ -15,6 +15,7 @@ MonoBehaviour:
   MomentName: Initial Moment
   MomentInteractionNum: 0
   DialogueLines:
+  - {fileID: 11400000, guid: 08b349d7aca1ffa419c13db5b9482eac, type: 2}
   - {fileID: 11400000, guid: 2871064bda7bbbd418c0f2a45d27bb90, type: 2}
   - {fileID: 11400000, guid: 97415e7b5b8316848af51e42f0787352, type: 2}
   - {fileID: 11400000, guid: d4bdf16b3dc88004c833050017c48b1d, type: 2}

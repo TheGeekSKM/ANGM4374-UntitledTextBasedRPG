@@ -21,5 +21,7 @@ public class RoomData : ScriptableObject
 
     public List<NPCData> NPCs;
 
+    public bool discovered = false;
+
     
 }

@@ -13,5 +13,12 @@ public class GameSetupState : State
         gameFSM = fsm;
     }
 
-    
+    public override void Enter()
+    {
+        base.Enter();
+        Debug.Log("Game Setup State");
+        gameController.dialogueManager.StartCurrentDialogue();
+    }
+
+
 }
