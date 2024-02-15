@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenuState : State
+public class MenuCreditsState : State
 {
     MainMenuFSM mainMenuFSM;
     MainMenuController mainMenuController;
 
-    public MainMenuState(MainMenuController controller, MainMenuFSM fsm)
+    public MenuCreditsState(MainMenuController controller, MainMenuFSM fsm)
     {
         mainMenuController = controller;
         mainMenuFSM = fsm;
@@ -16,16 +16,14 @@ public class MainMenuState : State
     public override void Enter()
     {
         base.Enter();
-        mainMenuController.AnimateMenuIntro();
+        mainMenuController.AnimateCreditsIntro();
         // UI Animations
     }
 
     public override void Exit()
     {
         base.Exit();
-        mainMenuController.AnimateMenuOutro();
+        mainMenuController.AnimateCreditsOutro();
         // UI Animations
     }
-
-    
 }

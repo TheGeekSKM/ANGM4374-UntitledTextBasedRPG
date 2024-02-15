@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenuState : State
+public class MenuPlayState : State
 {
     MainMenuFSM mainMenuFSM;
     MainMenuController mainMenuController;
 
-    public MainMenuState(MainMenuController controller, MainMenuFSM fsm)
+    public MenuPlayState(MainMenuController controller, MainMenuFSM fsm)
     {
         mainMenuController = controller;
         mainMenuFSM = fsm;
@@ -16,16 +16,8 @@ public class MainMenuState : State
     public override void Enter()
     {
         base.Enter();
-        mainMenuController.AnimateMenuIntro();
+        mainMenuController.LoadPlayScene();
         // UI Animations
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-        mainMenuController.AnimateMenuOutro();
-        // UI Animations
-    }
-
-    
 }

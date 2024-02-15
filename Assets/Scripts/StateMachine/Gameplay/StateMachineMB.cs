@@ -18,6 +18,25 @@ public class StateMachineMB : MonoBehaviour
         ChangeStateSequence(newState);
     }
 
+    public void ChangeState(State newState, float delay)
+    {
+        StartCoroutine(ChangeStateWithDelay(newState, delay));
+    }
+    IEnumerator ChangeStateWithDelay(State newState, float delay)
+    {
+        _inTransition = true;
+
+        CurrentState?.Exit();
+        StoreStateAsPrevious(newState);
+
+        yield return new WaitForSeconds(delay);
+
+        CurrentState = newState;
+
+        CurrentState?.Enter();
+        _inTransition = false;
+    }
+
     void ChangeStateSequence(State newState)
     {
         _inTransition = true;
@@ -30,6 +49,7 @@ public class StateMachineMB : MonoBehaviour
         CurrentState?.Enter();
         _inTransition = false;
     }
+
 
     void StoreStateAsPrevious(State newState)
     {
