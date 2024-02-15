@@ -12,4 +12,15 @@ public class GamePlayState : State
         gameController = controller;
         gameFSM = fsm;
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+        gameController.AnimateGamePlayPanelIntro();
+    }
+
+    public override void Exit()
+    {
+        gameController.AnimateGamePlayPanelOutro();
+    }
 }
