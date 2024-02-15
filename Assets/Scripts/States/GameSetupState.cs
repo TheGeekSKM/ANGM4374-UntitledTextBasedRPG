@@ -17,8 +17,9 @@ public class GameSetupState : State
     {
         base.Enter();
         Debug.Log("Game Setup State");
-        gameController.dialogueManager.StartCurrentDialogue();
+        
     }
+
 
 
 }

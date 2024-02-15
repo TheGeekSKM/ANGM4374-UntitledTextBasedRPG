@@ -9,4 +9,6 @@ public class DialogueLineData : ScriptableObject
 
     [TextArea(15, 20)]
     public string DialogueLine;
+
+    public float DelayAfterTyping = 2f;
 }

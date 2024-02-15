@@ -11,6 +11,7 @@ public class GameFSM : StateMachineMB
 
     public GameSetupState GameSetupState {get; private set;}
     public GamePlayState GamePlayState {get; private set;}
+    public GameDialogueState GameDialogueState {get; private set;}
 
     void Awake()
     {
@@ -18,10 +19,11 @@ public class GameFSM : StateMachineMB
 
         GameSetupState = new GameSetupState(_controller, this);
         GamePlayState = new GamePlayState(_controller, this);
+        GameDialogueState = new GameDialogueState(_controller, this);
     }
 
     void Start()
     {
-        ChangeState(GameSetupState);
+        ChangeState(GameDialogueState, .5f);
     }
 }

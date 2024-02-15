@@ -33,6 +33,10 @@ public class TypewriterText : MonoBehaviour
     [SerializeField] bool _clearOnFinish = true;
 
 
+    DialogueLineData _currentDialogueLineData;
+    Coroutine _typingCoroutine;
+
+
     public UnityEngine.Events.UnityEvent OnTypingFinished;
 
     void Awake()
@@ -59,15 +63,29 @@ public class TypewriterText : MonoBehaviour
 
     public void Type(DialogueLineData dialogueLineData)
     {
-        story = dialogueLineData.NPCData ? dialogueLineData.NPCData.NPCName + ":\n" + dialogueLineData.DialogueLine : dialogueLineData.DialogueLine;
-        StopCoroutine(PlayText());
+        _currentDialogueLineData = dialogueLineData;
+        story = _currentDialogueLineData.NPCData ? _currentDialogueLineData.NPCData.NPCName + ":\n" + _currentDialogueLineData.DialogueLine : _currentDialogueLineData.DialogueLine;
+        if (_typingCoroutine != null) StopCoroutine(_typingCoroutine);
         _text.text = "";
         Invoke("StartTyping", settings.delayToStart);
     }
 
+    public void SkipTyping()
+    {
+        if (_typingCoroutine != null) StopCoroutine(_typingCoroutine);
+        _text.text = story;
+        // Invoke("FinishedTyping", _currentDialogueLineData.DelayAfterTyping);
+    }
+
+    void FinishedTyping()
+    {
+        OnTypingFinished.Invoke();
+        _currentDialogueLineData = null;
+    }
+
     void StartTyping()
     {
-        StartCoroutine(PlayText());
+        _typingCoroutine = StartCoroutine(PlayText());
     }
 
     IEnumerator PlayText()
@@ -97,9 +115,9 @@ public class TypewriterText : MonoBehaviour
 
         if (useAudio) TypingFX.Stop();
 
-        yield return new WaitForSeconds(settings.delayAfterTyping);
+        yield return new WaitForSeconds(_currentDialogueLineData.DelayAfterTyping);
         if (_clearOnFinish) _text.text = "";
-        OnTypingFinished.Invoke();
+        FinishedTyping();
     }
 }
 
@@ -109,20 +127,17 @@ public class TypewriterSettings
     public float delayToStart;
     public float delayBetweenChars;
     public float delayAfterPunctuation;
-    public float delayAfterTyping;
 
     public TypewriterSettings()
     {
         delayToStart = 0f;
         delayBetweenChars = .125f;
         delayAfterPunctuation = .5f;
-        delayAfterTyping = .2f;
     }
     public TypewriterSettings(float delayToStart, float delayBetweenChars, float delayAfterPunctuation, float delayAfterTyping)
     {
         this.delayToStart = delayToStart;
         this.delayBetweenChars = delayBetweenChars;
         this.delayAfterPunctuation = delayAfterPunctuation;
-        this.delayAfterTyping = delayAfterTyping;
     }
 }

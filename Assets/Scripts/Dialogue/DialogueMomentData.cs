@@ -10,4 +10,6 @@ public class DialogueMomentData : ScriptableObject
     public int MomentInteractionNum;
 
     public List<DialogueLineData> DialogueLines;
+
+    
 }

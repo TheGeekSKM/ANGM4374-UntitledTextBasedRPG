@@ -24,6 +24,13 @@ public class DialogueManager : MonoBehaviour
         typewriterText.OnTypingFinished.AddListener(TypeNextLine);
     }
 
+    public void SkipLine()
+    {
+        if (dialogueIndex >= CurrentDialogueMoment.DialogueLines.Count) return;
+        typewriterText.SkipTyping();
+        Invoke("TypeNextLine", CurrentDialogueMoment.DialogueLines[dialogueIndex].DelayAfterTyping);
+    }
+
     public void TypeNextLine()
     {
         if (dialogueIndex < CurrentDialogueMoment.DialogueLines.Count)
@@ -33,7 +40,14 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            typewriterText.OnTypingFinished.RemoveListener(TypeNextLine);
+            FinishedDialogueMoment();
         }
+    }
+
+    public void FinishedDialogueMoment()
+    {
+        typewriterText.OnTypingFinished.RemoveListener(TypeNextLine);
+        GameController.Instance.gameFSM.ChangeState(GameController.Instance.gameFSM.GamePlayState, 1f);
+        Debug.Log("Finished dialogue moment");
     }
 }
