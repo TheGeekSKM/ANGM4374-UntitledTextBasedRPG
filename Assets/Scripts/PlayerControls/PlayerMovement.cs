@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody _rigidbody;
     public float moveSpeed = 5f;
-    bool _move = false;
-    public bool IsMoving => _move;
+    public bool Move = false;
 
     Vector3 _moveDirection;
 
@@ -31,18 +31,19 @@ public class PlayerMovement : MonoBehaviour
 
     void HitWall()
     {
-        _move = false;
+        Move = false;
+        GameController.Instance.ToggleMove();
         GameController.Instance.AddNotification("I hit a wall!");
     }
 
     public void MoveForward()
     {
-        _move = true;
+        Move = true;
     }
 
     public void StopMoving()
     {
-        _move = false;
+        Move = false;
     }
 
     public void TurnLeft()
@@ -57,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_move)
+        if (Move)
         {
             // adds velocity to the rigidbody in local space
             _rigidbody.velocity = _moveDirection * moveSpeed;

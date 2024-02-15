@@ -7,15 +7,20 @@ public class DialogueManager : MonoBehaviour
 {
     [SerializeField] TypewriterText typewriterText;
     public DialogueMomentData CurrentDialogueMoment;
-    int dialogueIndex = 0;
+    [SerializeField] int dialogueIndex = 0;
+    [SerializeField] int clickIndex = 0;
+    [SerializeField] bool dialogueFinished;
 
     public void StartCurrentDialogue()
     {
         StartDialogue(CurrentDialogueMoment);
+        dialogueFinished = false;
     }
 
     public void StartDialogue(DialogueMomentData dialogueMoment)
     {
+        dialogueFinished = false;
+
         CurrentDialogueMoment = dialogueMoment;
         dialogueIndex = 0;
 
@@ -26,9 +31,26 @@ public class DialogueManager : MonoBehaviour
 
     public void SkipLine()
     {
-        if (dialogueIndex >= CurrentDialogueMoment.DialogueLines.Count) return;
-        typewriterText.SkipTyping();
-        Invoke("TypeNextLine", CurrentDialogueMoment.DialogueLines[dialogueIndex].DelayAfterTyping);
+        if (dialogueIndex >= CurrentDialogueMoment.DialogueLines.Count)
+        {
+            typewriterText.SkipTyping();
+            Invoke("FinishedDialogueMoment", CurrentDialogueMoment.DialogueLines[dialogueIndex-1].DelayAfterTyping);
+            return;
+        }
+
+        if (clickIndex == 0)
+        {
+            
+            clickIndex++;
+            typewriterText.SkipTyping();
+            Invoke("TypeNextLine", CurrentDialogueMoment.DialogueLines[dialogueIndex].DelayAfterTyping);
+        }
+        else
+        {
+            CancelInvoke();
+            TypeNextLine();
+            clickIndex = 0;
+        }
     }
 
     public void TypeNextLine()
@@ -46,8 +68,11 @@ public class DialogueManager : MonoBehaviour
 
     public void FinishedDialogueMoment()
     {
+        if (dialogueFinished) return;
+
         typewriterText.OnTypingFinished.RemoveListener(TypeNextLine);
         GameController.Instance.gameFSM.ChangeState(GameController.Instance.gameFSM.GamePlayState, 1f);
         Debug.Log("Finished dialogue moment");
+        dialogueFinished = true;
     }
 }

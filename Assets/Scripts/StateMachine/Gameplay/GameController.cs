@@ -33,6 +33,10 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject notificationPrefab;
     [SerializeField] List<string> notifications = new List<string>();
 
+    [Header("Extra Actions")]
+    public GameObject extraActionsPanel;
+    float extraActionPanelYPos;
+
     void Awake()
     {
         if (Instance == null)
@@ -46,6 +50,9 @@ public class GameController : MonoBehaviour
 
         gameFSM = GetComponent<GameFSM>();
     }
+
+
+    #region AnimatePanels
 
     public void AnimateDialoguePanelIntro()
     {
@@ -75,25 +82,7 @@ public class GameController : MonoBehaviour
         gamePlayPanel.GetComponent<RectTransform>().DOAnchorPosX(gamePlayPanelXPos, 1f).SetEase(Ease.OutCubic);
     }
 
-    public void ToggleMove()
-    {
-        if (playerMovement.IsMoving)
-        {
-            PlayerStopMoving();
-            foreach (Button button in playerButtonsToDisable)
-            {
-                button.interactable = true;
-            }
-        }
-        else
-        {
-            PlayerMoveForward();
-            foreach (Button button in playerButtonsToDisable)
-            {
-                button.interactable = false;
-            }
-        }
-    }
+    #endregion
 
     public void AddNotification(string notification)
     {
@@ -102,11 +91,49 @@ public class GameController : MonoBehaviour
         notificationGO.GetComponent<TextMeshProUGUI>().text = notification;
     }
 
+    #region Movement
+
+    private void Update()
+    {
+        if (playerMovement.Move)
+        {
+            foreach (Button button in playerButtonsToDisable)
+            {
+                button.interactable = false;
+            }
+        }
+        else
+        {
+            foreach (Button button in playerButtonsToDisable)
+            {
+                button.interactable = true;
+            }
+        }
+    }
+
+    public void ToggleMove()
+    {
+        if (playerMovement.Move)
+        {
+            PlayerStopMoving();
+        }
+        else
+        {
+            PlayerMoveForward();
+        }
+    }
+
+    
+
     public void PlayerMoveForward()
     {
         playerMovement.MoveForward();
         playerMoveText.text = "Stop Moving";
         AddNotification("I started moving forward.");
+        foreach (Button button in playerButtonsToDisable)
+        {
+            button.interactable = false;
+        }
 
     }
 
@@ -115,6 +142,10 @@ public class GameController : MonoBehaviour
         playerMovement.StopMoving();
         playerMoveText.text = "Move Forward";
         AddNotification("I stopped moving.");
+        foreach (Button button in playerButtonsToDisable)
+        {
+            button.interactable = true;
+        }
     }
 
     public void PlayerTurnLeft()
@@ -129,8 +160,34 @@ public class GameController : MonoBehaviour
         AddNotification("I turned right.");
     }
 
+    #endregion
+
     public void MainMenu()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    public void ExtraActions()
+    {
+        gameFSM.ChangeState(gameFSM.GameExtraActionState, 0.5f);
+    }
+
+    public void GamePlay()
+    {
+        gameFSM.ChangeState(gameFSM.GamePlayState, 0.5f);
+    }
+
+    public void ExtraActionsIntro()
+    {
+        var rT = extraActionsPanel.GetComponent<RectTransform>();
+        extraActionPanelYPos = rT.anchoredPosition.y;
+        rT.DOAnchorPosY(0, 0.5f);
+
+    }
+
+    public void ExtraActionsOutro()
+    {
+        var rT = extraActionsPanel.GetComponent<RectTransform>();
+        rT.DOAnchorPosY(extraActionPanelYPos, 0.5f);
     }
 }
