@@ -11,9 +11,19 @@ public abstract class State
 
     }
 
+    public virtual void Enter(float time = 0.5f)
+    {
+
+    }
+
     public virtual void Exit()
     {
 
+    }
+
+    public virtual void Exit(float time = 0.5f)
+    {
+        
     }
 
     public virtual void Tick()

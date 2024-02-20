@@ -54,32 +54,32 @@ public class GameController : MonoBehaviour
 
     #region AnimatePanels
 
-    public void AnimateDialoguePanelIntro()
+    public void AnimateDialoguePanelIntro(float time = 0.5f)
     {
         if (!dialoguePanel) return;
         dialoguePanelXPos = dialoguePanel.GetComponent<RectTransform>().anchoredPosition.x;
-        dialoguePanel.GetComponent<RectTransform>().DOAnchorPosX(0, 1f).SetEase(Ease.OutCubic).OnComplete(() => dialogueManager.StartCurrentDialogue());
+        dialoguePanel.GetComponent<RectTransform>().DOAnchorPosX(0, time).SetEase(Ease.OutCubic).OnComplete(() => dialogueManager.StartCurrentDialogue());
         
     }
 
-    public void AnimateDialoguePanelOutro()
+    public void AnimateDialoguePanelOutro(float time = 0.5f)
     {
         if (!dialoguePanel) return;
-        dialoguePanel.GetComponent<RectTransform>().DOAnchorPosX(dialoguePanelXPos, 1f).SetEase(Ease.OutCubic);
+        dialoguePanel.GetComponent<RectTransform>().DOAnchorPosX(dialoguePanelXPos, time).SetEase(Ease.OutCubic);
         
     }
 
-    public void AnimateGamePlayPanelIntro()
+    public void AnimateGamePlayPanelIntro(float time = 0.5f)
     {
         if (!gamePlayPanel) return;
         gamePlayPanelXPos = gamePlayPanel.GetComponent<RectTransform>().anchoredPosition.x;
-        gamePlayPanel.GetComponent<RectTransform>().DOAnchorPosX(0, 1f).SetEase(Ease.OutCubic);
+        gamePlayPanel.GetComponent<RectTransform>().DOAnchorPosX(0, time).SetEase(Ease.OutCubic);
     }
 
-    public void AnimateGamePlayPanelOutro()
+    public void AnimateGamePlayPanelOutro(float time = 0.5f)
     {
         if (!gamePlayPanel) return;
-        gamePlayPanel.GetComponent<RectTransform>().DOAnchorPosX(gamePlayPanelXPos, 1f).SetEase(Ease.OutCubic);
+        gamePlayPanel.GetComponent<RectTransform>().DOAnchorPosX(gamePlayPanelXPos, time).SetEase(Ease.OutCubic);
     }
 
     #endregion
@@ -167,14 +167,14 @@ public class GameController : MonoBehaviour
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
-    public void ExtraActions()
+    public void ExtraActions(float time = 0.5f)
     {
-        gameFSM.ChangeState(gameFSM.GameExtraActionState, 0.5f);
+        gameFSM.ChangeState(gameFSM.GameExtraActionState, time);
     }
 
-    public void GamePlay()
+    public void GamePlay(float time = 0.5f)
     {
-        gameFSM.ChangeState(gameFSM.GamePlayState, 0.5f);
+        gameFSM.ChangeState(gameFSM.GamePlayState, time);
     }
 
     public void ExtraActionsIntro()

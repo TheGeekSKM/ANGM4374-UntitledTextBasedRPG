@@ -22,6 +22,8 @@ public class StateMachineMB : MonoBehaviour
     {
         StartCoroutine(ChangeStateWithDelay(newState, delay));
     }
+
+
     IEnumerator ChangeStateWithDelay(State newState, float delay)
     {
         _inTransition = true;
