@@ -199,7 +199,7 @@ public class GameController : MonoBehaviour
     {
         var rT = extraActionsPanel.GetComponent<RectTransform>();
         extraActionPanelYPos = rT.anchoredPosition.y;
-        rT.DOAnchorPosY(0, 0.5f);
+        rT.DOAnchorPosY(787.2501f, 0.5f);
 
     }
 

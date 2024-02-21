@@ -5,16 +5,39 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
+    public static DialogueManager Instance;
     [SerializeField] TypewriterText typewriterText;
     public DialogueMomentData CurrentDialogueMoment;
     [SerializeField] int dialogueIndex = 0;
     [SerializeField] int clickIndex = 0;
     [SerializeField] bool dialogueFinished;
+    Coroutine _startDialogueCoroutine;
 
-    public void StartCurrentDialogue()
+    void Awake()
     {
-        StartDialogue(CurrentDialogueMoment);
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+
+    public void StartNewDialogue(DialogueMomentData dialogueMoment, float dialogueStartDelay = 0.5f)
+    {
+        if (!dialogueFinished) return;
+        StartCurrentDialogue(dialogueStartDelay);
+    }
+
+    public void StartCurrentDialogue(float dialogueStartDelay = 0.5f)
+    {
+        if (_startDialogueCoroutine != null) StopCoroutine(_startDialogueCoroutine);
+        _startDialogueCoroutine = StartCoroutine(StartDialogueCoroutine(dialogueStartDelay));
+        
+    }
+
+    IEnumerator StartDialogueCoroutine(float dialogueStartDelay)
+    {
+        GameController.Instance.gameFSM.ChangeState(GameController.Instance.gameFSM.GameDialogueState);
         dialogueFinished = false;
+        yield return new WaitForSeconds(dialogueStartDelay);
+        StartDialogue(CurrentDialogueMoment);
     }
 
     public void StartDialogue(DialogueMomentData dialogueMoment)

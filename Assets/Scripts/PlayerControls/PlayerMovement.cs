@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody _rigidbody;
     public float moveSpeed = 5f;
     public bool Move = false;
+    public bool Crouch = false;
 
     Vector3 _moveDirection;
 
@@ -54,6 +55,18 @@ public class PlayerMovement : MonoBehaviour
     public void TurnRight()
     {
         _moveDirection = Quaternion.Euler(0, 90, 0) * _moveDirection;
+    }
+
+    public void BeginCrouch()
+    {
+        Crouch = true;
+        GameController.Instance.AddNotification("I'm crouching now...Hopefully, I can stay quiet.");
+    }
+
+    public void EndCrouch()
+    {
+        Crouch = false;
+        GameController.Instance.AddNotification("I stopped crouching...I gotta be careful now.");
     }
 
     void FixedUpdate()

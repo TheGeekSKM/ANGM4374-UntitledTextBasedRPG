@@ -19,7 +19,9 @@ public class RoomData : ScriptableObject
 
     //needs list of items on floor
 
-    public List<NPCData> NPCs;
+    public NPCData NPC;
+
+    public List<ItemData> Loot;
 
     public bool discovered = false;
 

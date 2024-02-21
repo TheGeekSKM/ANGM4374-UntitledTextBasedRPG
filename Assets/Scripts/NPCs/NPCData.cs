@@ -12,6 +12,7 @@ public class NPCData : ScriptableObject
     public string NPCDescription;
 
     public int InteractionCount = 0;
+    public DialogueMomentData IntroDialogueMoment;
+    public List<DialogueLineData> InteractionLines;
 
-    public List<DialogueMomentData> DialogueMoments;
 }
