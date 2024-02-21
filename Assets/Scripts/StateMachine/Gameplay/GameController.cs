@@ -19,6 +19,10 @@ public class GameController : MonoBehaviour
     public GameObject gamePlayPanel;
     float gamePlayPanelXPos;
 
+    [Header("GameListen")]
+    public GameObject gameListenPanel;
+    float gameListenPanelYPos;
+
     [Header("Game FSM")]
     public GameFSM gameFSM;
 
@@ -82,6 +86,21 @@ public class GameController : MonoBehaviour
         gamePlayPanel.GetComponent<RectTransform>().DOAnchorPosX(gamePlayPanelXPos, time).SetEase(Ease.OutCubic);
     }
 
+    public void AnimateGameListenPanelIntro(float time = 0.5f)
+    {
+        Debug.Log("Animating GameListenPanel Intro");
+        if (!gameListenPanel) return;
+        gameListenPanelYPos = gameListenPanel.GetComponent<RectTransform>().anchoredPosition.y;
+        gameListenPanel.GetComponent<RectTransform>().DOAnchorPosY(0, time).SetEase(Ease.OutCubic);
+    }
+
+    public void AnimateGameListenPanelOutro(float time = 0.5f)
+    {
+        Debug.Log("Animating GameListenPanel Outro");
+        if (!gameListenPanel) return;
+        gameListenPanel.GetComponent<RectTransform>().DOAnchorPosY(gameListenPanelYPos, time).SetEase(Ease.OutCubic);
+    }
+
     #endregion
 
     public void AddNotification(string notification)
@@ -97,6 +116,8 @@ public class GameController : MonoBehaviour
     {
         if (playerMovement.Move)
         {
+            playerMoveText.text = "Stop Moving";
+
             foreach (Button button in playerButtonsToDisable)
             {
                 button.interactable = false;
@@ -104,6 +125,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
+            playerMoveText.text = "Move Forward";
             foreach (Button button in playerButtonsToDisable)
             {
                 button.interactable = true;
@@ -128,24 +150,15 @@ public class GameController : MonoBehaviour
     public void PlayerMoveForward()
     {
         playerMovement.MoveForward();
-        playerMoveText.text = "Stop Moving";
         AddNotification("I started moving forward.");
-        foreach (Button button in playerButtonsToDisable)
-        {
-            button.interactable = false;
-        }
+        
 
     }
 
     public void PlayerStopMoving()
     {
         playerMovement.StopMoving();
-        playerMoveText.text = "Move Forward";
         AddNotification("I stopped moving.");
-        foreach (Button button in playerButtonsToDisable)
-        {
-            button.interactable = true;
-        }
     }
 
     public void PlayerTurnLeft()
@@ -175,6 +188,11 @@ public class GameController : MonoBehaviour
     public void GamePlay(float time = 0.5f)
     {
         gameFSM.ChangeState(gameFSM.GamePlayState, time);
+    }
+
+    public void GameListen(float time = 0.5f)
+    {
+        gameFSM.ChangeState(gameFSM.GameListenState, time);
     }
 
     public void ExtraActionsIntro()

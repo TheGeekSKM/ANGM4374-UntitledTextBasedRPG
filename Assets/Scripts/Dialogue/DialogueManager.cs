@@ -71,7 +71,7 @@ public class DialogueManager : MonoBehaviour
         if (dialogueFinished) return;
 
         typewriterText.OnTypingFinished.RemoveListener(TypeNextLine);
-        GameController.Instance.gameFSM.ChangeState(GameController.Instance.gameFSM.GamePlayState, 1f);
+        GameController.Instance.gameFSM.ChangeState(GameController.Instance.gameFSM.GamePlayState, 0.5f);
         Debug.Log("Finished dialogue moment");
         dialogueFinished = true;
     }
