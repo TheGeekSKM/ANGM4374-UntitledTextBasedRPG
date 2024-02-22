@@ -40,7 +40,13 @@ public class Sound : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // let the enemy know the position of this sound and set it as a target for the enemy navmesh
-        
+        var enemyController = other.GetComponent<EnemyController>();
+        if (!enemyController)
+        {
+            Debug.Log("No Enemy Controller Found");
+        }
+
+        enemyController.EnemyTarget(transform);
     }
 
     void Update()

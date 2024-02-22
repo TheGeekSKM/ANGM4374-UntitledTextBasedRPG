@@ -5,6 +5,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class GameController : MonoBehaviour
 {
@@ -48,6 +49,10 @@ public class GameController : MonoBehaviour
     public GameObject notificationPanel;
     [SerializeField] GameObject notificationPrefab;
     [SerializeField] List<string> notifications = new List<string>();
+
+    [Header("Events")]
+    public UnityEvent OnPlayerStartMove;
+    public UnityEvent OnPlayerStopMoving;
 
 
     void Awake()
@@ -179,11 +184,13 @@ public class GameController : MonoBehaviour
     {
         if (playerMovement.Move)
         {
+            OnPlayerStopMoving?.Invoke();
             PlayerStopMoving();
             UpdateMoveButtonVisuals();
         }
         else
         {
+            OnPlayerStartMove?.Invoke();
             PlayerMoveForward();
             UpdateMoveButtonVisuals();
         }

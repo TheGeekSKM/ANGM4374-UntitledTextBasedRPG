@@ -20,8 +20,14 @@ public class EnemyController : MonoBehaviour
     [SerializeField] Vector2 _minMaxIdleWaitTime = new Vector2(2, 5);
     [SerializeField] bool walking = false;
 
+    [Header("Enemy Attack")]
+    [SerializeField] int damage = 10;
+    [SerializeField] float timeBetweenAttacks = 2f;
+    [SerializeField] PlayerHealth targetHealth;
+
     public bool Walking => walking;
     Coroutine idleWaitTime;
+    Coroutine attackRoutine;
 
 
     void OnValidate()
@@ -65,6 +71,41 @@ public class EnemyController : MonoBehaviour
 
         this.target = target.position;
     }
+
+
+    public void StartEnemyAttack(PlayerHealth playerHealth)
+    {
+        targetHealth = playerHealth;
+        enemyFSM.ChangeState(enemyFSM.EnemyAttackState);
+    }
+
+    public void EnemyAttackLogic()
+    {
+        if (!targetHealth) return;
+
+        navMeshAgent.ResetPath();
+
+        if (attackRoutine == null) attackRoutine = StartCoroutine(AttackRoutine());
+        else
+        {
+            StopCoroutine(attackRoutine);
+            attackRoutine = StartCoroutine(AttackRoutine());
+        }
+
+    }
+
+    IEnumerator AttackRoutine()
+    {
+        if (targetHealth)
+        {
+            targetHealth.TakeDamage(damage);
+            yield return new WaitForSeconds(timeBetweenAttacks);
+        }
+
+        yield return new WaitForSeconds(timeBetweenAttacks);
+
+    }
+
 
     public void EnemyIdleLogic()
     {
