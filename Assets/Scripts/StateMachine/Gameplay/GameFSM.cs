@@ -14,6 +14,8 @@ public class GameFSM : StateMachineMB
     public GameDialogueState GameDialogueState {get; private set;}
     public GameExtraActionState GameExtraActionState { get; private set; }
     public GameListenState GameListenState { get; private set; }
+    public GameRoomInventoryState GameRoomInventoryState { get; private set; }
+    public GameInventoryState GameInventoryState { get; private set; }
 
     void Awake()
     {
@@ -24,6 +26,8 @@ public class GameFSM : StateMachineMB
         GameDialogueState = new GameDialogueState(_controller, this);
         GameExtraActionState = new GameExtraActionState(_controller, this);
         GameListenState = new GameListenState(_controller, this);
+        GameRoomInventoryState = new GameRoomInventoryState(_controller, this);
+        GameInventoryState = new GameInventoryState(_controller, this);
     }
 
     void Start()

@@ -23,6 +23,18 @@ public class GameController : MonoBehaviour
     public GameObject gameListenPanel;
     float gameListenPanelYPos;
 
+    [Header("Extra Actions")]
+    public GameObject extraActionsPanel;
+    float extraActionPanelYPos;
+
+    [Header("Inventory")]
+    public GameObject inventoryPanel;
+    float inventoryPanelXPos;
+
+    [Header("Room Inventory")]
+    public GameObject roomInventoryPanel;
+    float roomInventoryPanelXPos;
+
     [Header("Game FSM")]
     public GameFSM gameFSM;
 
@@ -37,9 +49,6 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject notificationPrefab;
     [SerializeField] List<string> notifications = new List<string>();
 
-    [Header("Extra Actions")]
-    public GameObject extraActionsPanel;
-    float extraActionPanelYPos;
 
     void Awake()
     {
@@ -99,6 +108,32 @@ public class GameController : MonoBehaviour
         Debug.Log("Animating GameListenPanel Outro");
         if (!gameListenPanel) return;
         gameListenPanel.GetComponent<RectTransform>().DOAnchorPosY(gameListenPanelYPos, time).SetEase(Ease.OutCubic);
+    }
+
+    public void AnimateRoomInventoryPanelIntro(float time = 0.5f)
+    {
+        if (!roomInventoryPanel) return;
+        roomInventoryPanelXPos = roomInventoryPanel.GetComponent<RectTransform>().anchoredPosition.x;
+        roomInventoryPanel.GetComponent<RectTransform>().DOAnchorPosX(0, time).SetEase(Ease.OutCubic);
+    }
+
+    public void AnimateRoomInventoryPanelOutro(float time = 0.5f)
+    {
+        if (!roomInventoryPanel) return;
+        roomInventoryPanel.GetComponent<RectTransform>().DOAnchorPosX(roomInventoryPanelXPos, time).SetEase(Ease.OutCubic);
+    }
+
+    public void AnimateInventoryPanelIntro(float time = 0.5f)
+    {
+        if (!inventoryPanel) return;
+        inventoryPanelXPos = inventoryPanel.GetComponent<RectTransform>().anchoredPosition.x;
+        inventoryPanel.GetComponent<RectTransform>().DOAnchorPosX(0, time).SetEase(Ease.OutCubic);
+    }
+
+    public void AnimateInventoryPanelOutro(float time = 0.5f)
+    {
+        if (!inventoryPanel) return;
+        inventoryPanel.GetComponent<RectTransform>().DOAnchorPosX(inventoryPanelXPos, time).SetEase(Ease.OutCubic);
     }
 
     #endregion
@@ -199,7 +234,7 @@ public class GameController : MonoBehaviour
     {
         var rT = extraActionsPanel.GetComponent<RectTransform>();
         extraActionPanelYPos = rT.anchoredPosition.y;
-        rT.DOAnchorPosY(787.2501f, 0.5f);
+        rT.DOAnchorPosY(0, 0.5f);
 
     }
 

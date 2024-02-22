@@ -17,8 +17,18 @@ public class RoomManager : MonoBehaviour
     public void FeelAroundRoom()
     {
         if (CurrentRoom == null) return;
-        if (CurrentRoom.NPC.InteractionCount == 0) RoomNPC();
+        // if (CurrentRoom.NPC.InteractionCount == 0) RoomNPC();
         // showcase items in room
+        if (CurrentRoom.Loot.Count > 0)
+        {
+            GameController.Instance.AddNotification("\nI think I found something in the room.");
+            GameController.Instance.AddNotification("I should take a closer look.");
+            RoomInventoryManager.Instance.OpenRoomInventory(CurrentRoom);
+        }
+        else
+        {
+            GameController.Instance.AddNotification("I don't think there's anything else in this room.");
+        }
         
     }
 

@@ -7,4 +7,5 @@ public struct SoundData
 {
     public AudioClip Sound;
     public float Volume;
+    public bool Echo;
 }
