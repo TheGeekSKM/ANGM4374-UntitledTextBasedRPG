@@ -67,7 +67,7 @@ public class TouchManager : MonoBehaviour
 
     void OnTouchRelease(InputAction.CallbackContext context)
     {
-        Debug.Log("Touch Released");
+        // Debug.Log("Touch Released");
         TouchRelease?.Invoke();
     }
 }

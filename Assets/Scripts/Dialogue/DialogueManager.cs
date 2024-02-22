@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] int clickIndex = 0;
     [SerializeField] bool dialogueFinished;
     Coroutine _startDialogueCoroutine;
+
+    public UnityEvent OnDialogueStarted;
+    public UnityEvent OnDialogueFinished;
 
     void Awake()
     {
@@ -42,6 +46,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(DialogueMomentData dialogueMoment)
     {
+        OnDialogueStarted?.Invoke();
         dialogueFinished = false;
 
         CurrentDialogueMoment = dialogueMoment;
@@ -91,11 +96,12 @@ public class DialogueManager : MonoBehaviour
 
     public void FinishedDialogueMoment()
     {
+        OnDialogueFinished?.Invoke();
         if (dialogueFinished) return;
 
         typewriterText.OnTypingFinished.RemoveListener(TypeNextLine);
         GameController.Instance.gameFSM.ChangeState(GameController.Instance.gameFSM.GamePlayState, 0.5f);
-        Debug.Log("Finished dialogue moment");
+        // Debug.Log("Finished dialogue moment");
         dialogueFinished = true;
     }
 }

@@ -15,7 +15,7 @@ public class GameDialogueState : State
 
     public override void Enter()
     {
-        Debug.Log("Game Dialogue State");
+        // Debug.Log("Game Dialogue State");
         _gameController.AnimateDialoguePanelIntro();
     }
 
