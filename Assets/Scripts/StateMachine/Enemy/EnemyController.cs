@@ -100,7 +100,7 @@ public class EnemyController : MonoBehaviour
 
         //set the destination to the hit position
         navMeshAgent.SetDestination(target);
-        Debug.Log("Enemy is walking");
+        // Debug.Log("Enemy is walking");
         walking = true;
 
        
@@ -113,7 +113,6 @@ public class EnemyController : MonoBehaviour
         float dist=navMeshAgent.remainingDistance;
         if (dist == Mathf.Infinity)
         {
-            Debug.LogWarning("Path is invalid -> " + navMeshAgent.pathStatus + " -> " + navMeshAgent.remainingDistance);
             return;
         }
 
@@ -139,7 +138,7 @@ public class EnemyController : MonoBehaviour
     {
         target = transform.position;
         walking = false;
-        Debug.Log("Enemy is waiting");
+        // Debug.Log("Enemy is waiting");
         yield return new WaitForSeconds(Random.Range(waitTime.x, waitTime.y));
         EnemyIdleWalk();
     }

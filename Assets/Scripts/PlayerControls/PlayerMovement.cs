@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public bool Crouch = false;
 
     Vector3 _moveDirection;
+    Coroutine MoveSoundsRoutine;
 
     void Awake()
     {
@@ -32,19 +33,41 @@ public class PlayerMovement : MonoBehaviour
 
     void HitWall()
     {
-        Move = false;
-        GameController.Instance.ToggleMove();
+        GameController.Instance.PlayerStopMoving();
         GameController.Instance.AddNotification("I hit a wall!");
     }
 
     public void MoveForward()
     {
         Move = true;
+        if (MoveSoundsRoutine == null)
+        {
+            MoveSoundsRoutine = StartCoroutine(MoveSounds());
+        }
+        else
+        {
+            StopCoroutine(MoveSoundsRoutine);
+            MoveSoundsRoutine = StartCoroutine(MoveSounds());
+        }
     }
 
     public void StopMoving()
     {
+        Debug.Log("Stopping movement");
         Move = false;
+        if (MoveSoundsRoutine != null)
+        {
+            StopCoroutine(MoveSoundsRoutine);
+        }
+    }
+
+    IEnumerator MoveSounds()
+    {
+        while (Move)
+        {
+            SoundManager.Instance.Sound(transform, SoundAtlas.Instance.PlayerFootstepSound);
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     public void TurnLeft()

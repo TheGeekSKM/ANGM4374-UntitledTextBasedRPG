@@ -149,8 +149,14 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
+        
+    }
+
+    public void UpdateMoveButtonVisuals()
+    {
         if (playerMovement.Move)
         {
+            Debug.Log("Player is moving");
             playerMoveText.text = "Stop Moving";
 
             foreach (Button button in playerButtonsToDisable)
@@ -160,6 +166,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
+            Debug.Log("Player is not moving");
             playerMoveText.text = "Move Forward";
             foreach (Button button in playerButtonsToDisable)
             {
@@ -173,10 +180,12 @@ public class GameController : MonoBehaviour
         if (playerMovement.Move)
         {
             PlayerStopMoving();
+            UpdateMoveButtonVisuals();
         }
         else
         {
             PlayerMoveForward();
+            UpdateMoveButtonVisuals();
         }
     }
 

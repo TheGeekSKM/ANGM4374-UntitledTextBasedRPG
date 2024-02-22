@@ -1501,7 +1501,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948e6ee7a7b8db44da5ecfe3038ce668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerFootstepSounds: []
+  PlayerFootstepSounds:
+  - {fileID: 11400000, guid: 9ce0748df16081d45b8871d0092c6502, type: 2}
+  - {fileID: 11400000, guid: afa54788f30dd0246858150bae84ceb1, type: 2}
+  - {fileID: 11400000, guid: 83037d4f25d031d45894bb2fc6c6290a, type: 2}
+  - {fileID: 11400000, guid: 349b93acf190aa74a925bf0fb7ed964d, type: 2}
+  - {fileID: 11400000, guid: 76cba337a3674b54cbd85f6d825f4406, type: 2}
+  - {fileID: 11400000, guid: b762ad257f74efa44bf0263d4a79d0b6, type: 2}
+  - {fileID: 11400000, guid: 5ec010da68f625046b5d258b5e7ab14f, type: 2}
+  - {fileID: 11400000, guid: ce03f888a93991945af58362bfb6d655, type: 2}
+  - {fileID: 11400000, guid: bb949fd1df764f1478ceaf779413d740, type: 2}
+  - {fileID: 11400000, guid: 4c987cddc72914e4b91e334c7feb12ae, type: 2}
   MonsterGrowlSounds: []
 --- !u!1 &273199581
 GameObject:

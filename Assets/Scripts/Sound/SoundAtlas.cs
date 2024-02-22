@@ -7,11 +7,11 @@ public class SoundAtlas : MonoBehaviour
     public static SoundAtlas Instance;
 
     [Header("Sound References")]
-    public AudioClip[] PlayerFootstepSounds;
-    public AudioClip[] MonsterGrowlSounds;
+    public SoundData[] PlayerFootstepSounds;
+    public SoundData[] MonsterGrowlSounds;
 
 
-    public AudioClip PlayerFootstepSound
+    public SoundData PlayerFootstepSound
     {
         get
         {
@@ -19,7 +19,7 @@ public class SoundAtlas : MonoBehaviour
         }
     }
 
-    public AudioClip MonsterGrowlSound
+    public SoundData MonsterGrowlSound
     {
         get
         {

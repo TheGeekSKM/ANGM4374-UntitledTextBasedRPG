@@ -79,12 +79,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0091534105b66704bb87cfa4ac82b5fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundData:
-    Sound: {fileID: 0}
-    Volume: 0
-    Echo: 0
+  _soundData: {fileID: 0}
   _audioSource: {fileID: 2735631417311760540}
-  _soundTriggerGrowthSpeed: 0.1
+  _soundTriggerGrowthSpeed: 5
   _spriteRenderer: {fileID: 6898909571042247922}
 --- !u!135 &320974123681797037
 SphereCollider:
