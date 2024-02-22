@@ -44,6 +44,7 @@ public class Sound : MonoBehaviour
         if (!enemyController)
         {
             Debug.Log("No Enemy Controller Found");
+            return;
         }
 
         enemyController.EnemyTarget(transform);

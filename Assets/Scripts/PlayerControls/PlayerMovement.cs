@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     void HitWall()
     {
         GameController.Instance.PlayerStopMoving();
-        GameController.Instance.AddNotification("I hit a wall!");
+        GameController.Instance.AddNotification("I hit a wall!\n");
     }
 
     public void MoveForward()
@@ -83,13 +83,13 @@ public class PlayerMovement : MonoBehaviour
     public void BeginCrouch()
     {
         Crouch = true;
-        GameController.Instance.AddNotification("I'm crouching now...Hopefully, I can stay quiet.");
+        GameController.Instance.AddNotification("I'm crouching now...Hopefully, I can stay quiet.\n");
     }
 
     public void EndCrouch()
     {
         Crouch = false;
-        GameController.Instance.AddNotification("I stopped crouching...I gotta be careful now.");
+        GameController.Instance.AddNotification("\nI stopped crouching...I gotta be careful now.\n");
     }
 
     void FixedUpdate()

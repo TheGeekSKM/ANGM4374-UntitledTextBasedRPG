@@ -21,13 +21,13 @@ public class RoomManager : MonoBehaviour
         // showcase items in room
         if (CurrentRoom.Loot.Count > 0)
         {
-            GameController.Instance.AddNotification("\nI think I found something in the room.");
-            GameController.Instance.AddNotification("I should take a closer look.");
+            GameController.Instance.AddNotification("I think I found something in the room.");
+            GameController.Instance.AddNotification("I should take a closer look.\n");
             RoomInventoryManager.Instance.OpenRoomInventory(CurrentRoom);
         }
         else
         {
-            GameController.Instance.AddNotification("I don't think there's anything else in this room.");
+            GameController.Instance.AddNotification("I don't think there's anything else in this room.\n");
         }
         
     }
@@ -38,12 +38,12 @@ public class RoomManager : MonoBehaviour
         {
             CurrentRoom.discovered = true;
             GameController.Instance.AddNotification("I think I found a new room!");
-            GameController.Instance.AddNotification($"{CurrentRoom.StartingRoomDescription}");
+            GameController.Instance.AddNotification($"{CurrentRoom.StartingRoomDescription}\n");
         }
         else
         {
             GameController.Instance.AddNotification("I've been in this room before.");
-            GameController.Instance.AddNotification($"{CurrentRoom.RoomDescription}");
+            GameController.Instance.AddNotification($"{CurrentRoom.RoomDescription}\n");
 
             RoomNPC();
 
@@ -69,7 +69,7 @@ public class RoomManager : MonoBehaviour
 
     public void RoomExited()
     {
-        GameController.Instance.AddNotification($"I think I just left the {CurrentRoom.RoomName}.");
+        GameController.Instance.AddNotification($"I think I just left the {CurrentRoom.RoomName}.\n");
     }
 }
 

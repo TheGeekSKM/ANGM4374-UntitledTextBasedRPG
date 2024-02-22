@@ -157,9 +157,9 @@ public class GameController : MonoBehaviour
         
     }
 
-    public void UpdateMoveButtonVisuals()
+    public void UpdateMoveButtonVisuals(bool move)
     {
-        if (playerMovement.Move)
+        if (move)
         {
             Debug.Log("Player is moving");
             playerMoveText.text = "Stop Moving";
@@ -172,7 +172,7 @@ public class GameController : MonoBehaviour
         else
         {
             Debug.Log("Player is not moving");
-            playerMoveText.text = "Move Forward";
+            playerMoveText.text = "Move Forward" + "\n(-1 Health)";
             foreach (Button button in playerButtonsToDisable)
             {
                 button.interactable = true;
@@ -186,13 +186,13 @@ public class GameController : MonoBehaviour
         {
             OnPlayerStopMoving?.Invoke();
             PlayerStopMoving();
-            UpdateMoveButtonVisuals();
+            
         }
         else
         {
             OnPlayerStartMove?.Invoke();
             PlayerMoveForward();
-            UpdateMoveButtonVisuals();
+            UpdateMoveButtonVisuals(true);
         }
     }
 
@@ -201,27 +201,27 @@ public class GameController : MonoBehaviour
     public void PlayerMoveForward()
     {
         playerMovement.MoveForward();
-        AddNotification("I started moving forward.");
-        
-
+        AddNotification("I started moving forward.\n");
+        UpdateMoveButtonVisuals(true);
     }
 
     public void PlayerStopMoving()
     {
         playerMovement.StopMoving();
-        AddNotification("I stopped moving.");
+        AddNotification("I stopped moving.\n");
+        UpdateMoveButtonVisuals(false);
     }
 
     public void PlayerTurnLeft()
     {
         playerMovement.TurnLeft();
-        AddNotification("I turned left.");
+        AddNotification("I turned left.\n");
     }
 
     public void PlayerTurnRight()
     {
         playerMovement.TurnRight();
-        AddNotification("I turned right.");
+        AddNotification("I turned right.\n");
     }
 
     #endregion
