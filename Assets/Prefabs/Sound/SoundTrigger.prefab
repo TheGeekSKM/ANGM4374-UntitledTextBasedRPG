@@ -81,7 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _soundData: {fileID: 0}
   _audioSource: {fileID: 2735631417311760540}
-  _soundTriggerGrowthSpeed: 5
+  _soundTriggerGrowthSpeed: 100
   _spriteRenderer: {fileID: 6898909571042247922}
 --- !u!135 &320974123681797037
 SphereCollider:

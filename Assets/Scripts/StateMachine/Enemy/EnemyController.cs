@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] NavMeshAgent navMeshAgent;
 
     [Header("Enemy Target")]
-    [SerializeField] Vector3 target;
+    [SerializeField] Vector3 target = Vector3.zero;
     [SerializeField] bool canWalk = true;
 
     [Header("Enemy Idle")]
@@ -28,6 +28,7 @@ public class EnemyController : MonoBehaviour
     public bool Walking => walking;
     Coroutine idleWaitTime;
     Coroutine attackRoutine;
+    Coroutine walkTimer;
 
 
     void OnValidate()
@@ -54,6 +55,8 @@ public class EnemyController : MonoBehaviour
     {
         // if (!canWalk) return;
         // enemyFSM.ChangeState(enemyFSM.EnemyIdleState);
+        target = transform.position;
+
     }
 
 
@@ -70,6 +73,8 @@ public class EnemyController : MonoBehaviour
         enemyFSM.ChangeState(enemyFSM.EnemyTargetState);
 
         this.target = target.position;
+
+
     }
 
 
@@ -121,9 +126,20 @@ public class EnemyController : MonoBehaviour
         if (walking) PathCompleted();
     }
 
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(target, 5f);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, maxIdleWalkDistance);
+    }
+
     void EnemyIdleWalk()
     {
+        if (walkTimer != null) StopCoroutine(walkTimer);
         target = transform.position;
+
 
         //pick a random direction to move
         Vector3 randomDirection = Random.insideUnitSphere * maxIdleWalkDistance;
@@ -135,16 +151,25 @@ public class EnemyController : MonoBehaviour
         NavMeshHit hit;
 
         //find a random position on the NavMesh and store the information in the hit variable
-        NavMesh.SamplePosition(randomDirection, out hit, Random.Range(0f, maxIdleWalkDistance), 1);
+        NavMesh.SamplePosition(randomDirection, out hit, maxIdleWalkDistance, 1);
 
         target = hit.position;
 
+
         //set the destination to the hit position
         navMeshAgent.SetDestination(target);
+
         // Debug.Log("Enemy is walking");
+        walkTimer = StartCoroutine(WalkTimer());
         walking = true;
 
        
+    }
+
+    IEnumerator WalkTimer()
+    {
+        yield return new WaitForSeconds(Random.Range(10, 15));
+        EnemyIdleWalk();
     }
 
     void PathCompleted()
@@ -178,6 +203,7 @@ public class EnemyController : MonoBehaviour
     IEnumerator IdleWaitTime(Vector2 waitTime)
     {
         target = transform.position;
+
         walking = false;
         // Debug.Log("Enemy is waiting");
         yield return new WaitForSeconds(Random.Range(waitTime.x, waitTime.y));

@@ -84,12 +84,15 @@ public class PlayerMovement : MonoBehaviour
     {
         Crouch = true;
         GameController.Instance.AddNotification("I'm crouching now...Hopefully, I can stay quiet.\n");
+        transform.localScale = Vector3.one;
     }
 
     public void EndCrouch()
     {
         Crouch = false;
         GameController.Instance.AddNotification("\nI stopped crouching...I gotta be careful now.\n");
+        transform.localScale = Vector3.one * 2;
+
     }
 
     void FixedUpdate()

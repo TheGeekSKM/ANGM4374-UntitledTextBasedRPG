@@ -29,7 +29,7 @@ public class Sound : MonoBehaviour
         _soundData = soundData;
         _audioSource.clip = _soundData.Sound;
         if (_audioSource.clip) _clipLength = _audioSource.clip.length * 5f;
-        else _clipLength = 2f;
+        else _clipLength = 10f;
         _audioSource.volume = _soundData.Volume;
         transform.localScale = Vector3.one * _soundData.Volume * 2;
         _audioSource.Play();
@@ -41,9 +41,10 @@ public class Sound : MonoBehaviour
     {
         // let the enemy know the position of this sound and set it as a target for the enemy navmesh
         var enemyController = other.GetComponent<EnemyController>();
+
         if (!enemyController)
         {
-            Debug.Log("No Enemy Controller Found");
+            //Debug.Log("No Enemy Controller Found");
             return;
         }
 
