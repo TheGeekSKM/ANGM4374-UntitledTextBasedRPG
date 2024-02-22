@@ -6,6 +6,6 @@ using UnityEngine;
 public struct SoundData
 {
     public AudioClip Sound;
-    public float Volume;
+    [Range(0, 1)] public float Volume;
     public bool Echo;
 }

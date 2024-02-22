@@ -1453,6 +1453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 252153807}
   - component: {fileID: 252153806}
+  - component: {fileID: 252153808}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -1472,7 +1473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28074248fb73646448b5e3c38f232f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SoundPrefab: {fileID: 0}
+  SoundPrefab: {fileID: 3143094555239894697, guid: 4c5c4687bd51fb04c8915cc9d9225f3a, type: 3}
 --- !u!4 &252153807
 Transform:
   m_ObjectHideFlags: 0
@@ -1488,6 +1489,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &252153808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252153805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948e6ee7a7b8db44da5ecfe3038ce668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerFootstepSounds: []
+  MonsterGrowlSounds: []
 --- !u!1 &273199581
 GameObject:
   m_ObjectHideFlags: 0
