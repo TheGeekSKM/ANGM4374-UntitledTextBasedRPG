@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Inventory")]
     [SerializeField] Inventory _playerInventory;
+    public RoomManager PlayerRoom;
 
     [Header("UI")]
     [SerializeField] GameObject _itemContentPanel;
