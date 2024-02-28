@@ -29,7 +29,7 @@ public class SliderIntegerReader : MonoBehaviour
 
     void OnValueChanged()
     {
-        Debug.Log("Health Bar Changed");
+        // Debug.Log("Health Bar Changed");
         healthSlider.value = intSO.value;
     }
 }

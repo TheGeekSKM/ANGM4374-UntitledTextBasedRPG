@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c2314ef33f928a459c128927b5bf0b0, type: 3}
   m_Name: PFS 3
   m_EditorClassIdentifier: 
-  Sound: {fileID: 0}
-  Volume: 0.5
+  Sound: {fileID: 8300000, guid: ea19e92b551b4504b8694758d3245b13, type: 3}
+  Volume: 0.644
   Echo: 1

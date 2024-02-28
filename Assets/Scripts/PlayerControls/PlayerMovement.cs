@@ -79,11 +79,13 @@ public class PlayerMovement : MonoBehaviour
     public void TurnLeft()
     {
         _moveDirection = Quaternion.Euler(0, -90, 0) * _moveDirection;
+        SoundManager.Instance.Sound(transform, SoundAtlas.Instance.PlayerTurnSound);
     }
 
     public void TurnRight()
     {
         _moveDirection = Quaternion.Euler(0, 90, 0) * _moveDirection;
+        SoundManager.Instance.Sound(transform, SoundAtlas.Instance.PlayerTurnSound);
     }
 
     public void BeginCrouch()

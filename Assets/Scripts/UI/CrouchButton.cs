@@ -42,7 +42,7 @@ public class CrouchButton : MonoBehaviour
             GameController.Instance.playerMovement.EndCrouch();
             GameController.Instance.playerMovement.GetComponent<PlayerHealth>().StopTakingDamage();
             _crouchButtonText.text = originalText;
-            Debug.Log("Standing");
+            // Debug.Log("Standing");
         }
     }
 }
