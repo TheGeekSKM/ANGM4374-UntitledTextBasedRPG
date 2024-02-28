@@ -10,7 +10,9 @@ public class Sound : MonoBehaviour
     [SerializeField] float _soundTriggerGrowthSpeed = 5f;
     [SerializeField] SpriteRenderer _spriteRenderer;
 
-    float _clipLength;
+    [SerializeField] float _clipLength;
+
+    PlayerMovement _player;
 
     void OnValidate()
     {
@@ -26,6 +28,9 @@ public class Sound : MonoBehaviour
 
     public void SetSound(SoundData soundData)
     {
+        _player = GameController.Instance.playerMovement;
+        if (_player && _player.Crouch) _soundTriggerGrowthSpeed = 10f;
+
         _soundData = soundData;
         _audioSource.clip = _soundData.Sound;
         if (_audioSource.clip) _clipLength = _audioSource.clip.length * 5f;
@@ -33,6 +38,10 @@ public class Sound : MonoBehaviour
         _audioSource.volume = _soundData.Volume;
         transform.localScale = Vector3.one * _soundData.Volume * 2;
         _audioSource.Play();
+
+        //rotate image randomly around the y axis
+        transform.Rotate(Vector3.up, Random.Range(0, 360));
+        
 
         StartCoroutine(DestroySound());
     }
@@ -71,8 +80,7 @@ public class Sound : MonoBehaviour
 
     IEnumerator DestroySound()
     {
-        if (_audioSource.clip) yield return new WaitForSeconds(_clipLength);
-        else yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(_clipLength);
         Destroy(gameObject);
     }
 }

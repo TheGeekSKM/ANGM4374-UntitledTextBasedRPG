@@ -24,4 +24,10 @@ public class SoundManager : MonoBehaviour
         GameObject sound = Instantiate(SoundPrefab, soundSource.position, Quaternion.identity);
         sound.GetComponent<Sound>().SetSound(soundData);
     }
+
+    public void Sound(Vector3 location, SoundData soundData)
+    {
+        GameObject sound = Instantiate(SoundPrefab, location, Quaternion.identity);
+        sound.GetComponent<Sound>().SetSound(soundData);
+    }
 }

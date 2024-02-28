@@ -45,6 +45,9 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI playerMoveText;
     public List<Button> playerButtonsToDisable;
 
+    [Header("Enemy")]
+    public EnemyController enemyController;
+
     [Header("Notifications")]
     public GameObject notificationPanel;
     [SerializeField] GameObject notificationPrefab;
@@ -119,26 +122,26 @@ public class GameController : MonoBehaviour
     {
         if (!roomInventoryPanel) return;
         roomInventoryPanelXPos = roomInventoryPanel.GetComponent<RectTransform>().anchoredPosition.x;
-        roomInventoryPanel.GetComponent<RectTransform>().DOAnchorPosX(0, time).SetEase(Ease.OutCubic);
+        roomInventoryPanel.GetComponent<RectTransform>().DOAnchorPosX(0, time).SetEase(Ease.OutCubic).OnComplete(() => PauseGame());
     }
 
     public void AnimateRoomInventoryPanelOutro(float time = 0.5f)
     {
         if (!roomInventoryPanel) return;
-        roomInventoryPanel.GetComponent<RectTransform>().DOAnchorPosX(roomInventoryPanelXPos, time).SetEase(Ease.OutCubic);
+        roomInventoryPanel.GetComponent<RectTransform>().DOAnchorPosX(roomInventoryPanelXPos, time).SetEase(Ease.OutCubic).OnComplete(() => ResumeGame());
     }
 
     public void AnimateInventoryPanelIntro(float time = 0.5f)
     {
         if (!inventoryPanel) return;
         inventoryPanelXPos = inventoryPanel.GetComponent<RectTransform>().anchoredPosition.x;
-        inventoryPanel.GetComponent<RectTransform>().DOAnchorPosX(0, time).SetEase(Ease.OutCubic);
+        inventoryPanel.GetComponent<RectTransform>().DOAnchorPosX(0, time).SetEase(Ease.OutCubic).OnComplete(() => PauseGame());
     }
 
     public void AnimateInventoryPanelOutro(float time = 0.5f)
     {
         if (!inventoryPanel) return;
-        inventoryPanel.GetComponent<RectTransform>().DOAnchorPosX(inventoryPanelXPos, time).SetEase(Ease.OutCubic);
+        inventoryPanel.GetComponent<RectTransform>().DOAnchorPosX(inventoryPanelXPos, time).SetEase(Ease.OutCubic).OnComplete(() => ResumeGame());
     }
 
     #endregion
@@ -225,6 +228,17 @@ public class GameController : MonoBehaviour
     }
 
     #endregion
+
+
+    public void PauseGame()
+    {
+        enemyController.CanWalk = false;
+    }
+    public void ResumeGame()
+    {
+        enemyController.CanWalk = true;
+    }
+
 
     public void MainMenu()
     {

@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     [Header("Enemy Target")]
     [SerializeField] Vector3 target = Vector3.zero;
     [SerializeField] bool canWalk = true;
+    public bool CanWalk { get => canWalk; set => canWalk = value; }
 
     [Header("Enemy Idle")]
     [SerializeField] float maxIdleWalkDistance = 50f;
@@ -29,6 +30,8 @@ public class EnemyController : MonoBehaviour
     Coroutine idleWaitTime;
     Coroutine attackRoutine;
     Coroutine walkTimer;
+    Coroutine walkSoundsRoutine;
+    Coroutine monsterSoundsRoutine;
 
 
     void OnValidate()
@@ -138,6 +141,7 @@ public class EnemyController : MonoBehaviour
     void EnemyIdleWalk()
     {
         if (walkTimer != null) StopCoroutine(walkTimer);
+        if (walkSoundsRoutine != null) StopCoroutine(walkSoundsRoutine);
         target = transform.position;
 
 
@@ -161,13 +165,26 @@ public class EnemyController : MonoBehaviour
 
         // Debug.Log("Enemy is walking");
         walkTimer = StartCoroutine(WalkTimer());
+        walkSoundsRoutine = StartCoroutine(WalkSounds());
         walking = true;
 
        
     }
 
+    IEnumerator WalkSounds()
+    {
+        while (walking)
+        {
+            SoundManager.Instance.Sound(transform, SoundAtlas.Instance.MonsterFootstepSound);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
     IEnumerator WalkTimer()
     {
+        //spawn walking sounds
+        
+
         yield return new WaitForSeconds(Random.Range(10, 15));
         EnemyIdleWalk();
     }
@@ -186,11 +203,13 @@ public class EnemyController : MonoBehaviour
         {
             if (idleWaitTime == null)
             {
+                if (walkSoundsRoutine != null) StopCoroutine(walkSoundsRoutine);
                 idleWaitTime = StartCoroutine(IdleWaitTime(_minMaxIdleWaitTime));
             }
             else
             {
                 StopCoroutine(idleWaitTime);
+                if (walkSoundsRoutine != null) StopCoroutine(walkSoundsRoutine);
                 idleWaitTime = StartCoroutine(IdleWaitTime(_minMaxIdleWaitTime));
             }
             return;
@@ -210,6 +229,25 @@ public class EnemyController : MonoBehaviour
         EnemyIdleWalk();
     }
 
+    public void StartMonsterSounds()
+    {
+        if (monsterSoundsRoutine == null) monsterSoundsRoutine = StartCoroutine(MonsterSounds());
+        else
+        {
+            StopCoroutine(monsterSoundsRoutine);
+            monsterSoundsRoutine = StartCoroutine(MonsterSounds());
+        }
+    }
+    public void StopMonsterSounds()
+    {
+        if (monsterSoundsRoutine != null) StopCoroutine(monsterSoundsRoutine);
+    }
+
+    IEnumerator MonsterSounds()
+    {
+        SoundManager.Instance.Sound(transform, SoundAtlas.Instance.MonsterGrowlSound);
+        yield return new WaitForSeconds(Random.Range(3, 20));
+    }
 
 
     public void EnemyTargetLogic()

@@ -70,6 +70,8 @@ public class RoomManager : MonoBehaviour
     public void RoomExited()
     {
         GameController.Instance.AddNotification($"I think I just left the {CurrentRoom.RoomName}.\n");
+        PreviousRoom = CurrentRoom;
+        CurrentRoom = null;
     }
 }
 

@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public bool Move = false;
     public bool Crouch = false;
+    public GameObject Art;
 
     Vector3 _moveDirection;
     Coroutine MoveSoundsRoutine;
@@ -21,6 +22,11 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         _moveDirection = new Vector3(0, 0, -1); // forward
+    }
+
+    void Update()
+    {
+        // if (Crouch) Debug.Log("Crouching");
     }
 
     void OnCollisionEnter(Collision other)
@@ -84,7 +90,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Crouch = true;
         GameController.Instance.AddNotification("I'm crouching now...Hopefully, I can stay quiet.\n");
-        transform.localScale = Vector3.one;
+        Art.transform.localScale = Vector3.one * 0.5f;
+        GetComponent<BoxCollider>().enabled = false;
     }
 
     public void EndCrouch()
@@ -92,7 +99,8 @@ public class PlayerMovement : MonoBehaviour
         Crouch = false;
         GameController.Instance.AddNotification("\nI stopped crouching...I gotta be careful now.\n");
         transform.localScale = Vector3.one * 2;
-
+        Art.transform.localScale = Vector3.one;
+        GetComponent<BoxCollider>().enabled = true;
     }
 
     void FixedUpdate()

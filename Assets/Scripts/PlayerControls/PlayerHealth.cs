@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] int maxHealth = 100;
     [SerializeField] IntSO currentHealth;
+    Coroutine continuousDamageRoutine;
 
     private void Start() {
         currentHealth.SetValue(maxHealth);
@@ -18,6 +19,39 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void TakeContinuousDamage(int damage)
+    {
+        currentHealth.Add(-damage);
+
+        if (continuousDamageRoutine == null)
+        {
+            continuousDamageRoutine = StartCoroutine(ContinuousDamage(damage, 3));
+        }
+        else
+        {
+            StopCoroutine(continuousDamageRoutine);
+            continuousDamageRoutine = StartCoroutine(ContinuousDamage(damage, 3));
+        }
+    }
+
+    IEnumerator ContinuousDamage(int damage, float timeBetweenDamage)
+    {
+        while (true)
+        {
+            currentHealth.Add(-damage);
+            if (currentHealth.value <= 0)
+            {
+                Die();
+            }
+            yield return new WaitForSeconds(timeBetweenDamage);
+        }
+    }
+
+    public void StopTakingDamage()
+    {
+        if (continuousDamageRoutine != null) StopCoroutine(continuousDamageRoutine);
     }
 
     void Die()
