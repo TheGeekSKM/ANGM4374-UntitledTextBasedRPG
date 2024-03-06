@@ -12,6 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c2314ef33f928a459c128927b5bf0b0, type: 3}
   m_Name: PFS 1
   m_EditorClassIdentifier: 
-  Sound: {fileID: 8300000, guid: 05459a1e68706ae41a0cb0cc42a8ed51, type: 3}
+  Sounds:
+  - {fileID: 8300000, guid: 05459a1e68706ae41a0cb0cc42a8ed51, type: 3}
+  - {fileID: 8300000, guid: 0a0c2c29397dcf34490f6ebbfc4c2fc6, type: 3}
+  - {fileID: 8300000, guid: ea19e92b551b4504b8694758d3245b13, type: 3}
+  - {fileID: 8300000, guid: 0631fe7e266cdd442bc4a2aa7707485a, type: 3}
+  - {fileID: 8300000, guid: e4d9cf91ee185134b84513faee81527c, type: 3}
+  - {fileID: 8300000, guid: a02d59592c1b6664cb2c0d40c14c97bb, type: 3}
+  - {fileID: 8300000, guid: 72577208cb8dfb14fae43ccbce7b03c7, type: 3}
+  - {fileID: 8300000, guid: ceddaf562819bb941ae9c5128a7c0349, type: 3}
+  - {fileID: 8300000, guid: cbd8d39d06caace40bf8f4f593966f07, type: 3}
+  - {fileID: 8300000, guid: 62aa1723e81c6704ab0bda066b5bfd1e, type: 3}
   Volume: 0.644
   Echo: 1

@@ -42,6 +42,14 @@ public class ItemDisplay : MonoBehaviour
         Debug.Log("Item clicked");
         if (_playerInventory.AddItem(_itemData))
         {
+            // Remove the item from the room
+            RoomInventoryManager.Instance.RoomDisplayItems.Remove(_itemData);
+
+            // play the pickup sound
+            if (_itemData.PickupSound != null)
+                SoundManager.Instance.Sound(GameController.Instance.playerMovement.transform.position, _itemData.PickupSound);
+
+            // Remove the item from the room content panel
             Destroy(gameObject);
         }
     }

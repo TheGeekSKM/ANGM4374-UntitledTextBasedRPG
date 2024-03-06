@@ -42,6 +42,7 @@ public class GameController : MonoBehaviour
 
     [Header("Player")]
     public PlayerMovement playerMovement;
+    public PlayerHealth playerHealth;
     public TextMeshProUGUI playerMoveText;
     public List<Button> playerButtonsToDisable;
 

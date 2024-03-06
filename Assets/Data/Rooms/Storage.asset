@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa25556983e94843b39becd80a54e37, type: 3}
+  m_Name: Storage
+  m_EditorClassIdentifier: 
+  RoomName: Storage
+  StartingRoomDescription: This room feels a lot smaller. I can sense the walls near
+    me. I need to avoid bumping into any of the walls, but the small amount of sound
+    keeps bouncing off the walls. I can feel some shelves...maybe some items in here...I'll
+    call this room the Storage Room. I should feel around...
+  RoomDescription: Ah. I'm in the Storage Room now.
+  NPC: {fileID: 0}
+  Loot:
+  - {fileID: 11400000, guid: 18754ea50248f684987e6027840df3ff, type: 2}
+  - {fileID: 11400000, guid: 425dede6f844609498b52ca741332c8c, type: 2}
+  - {fileID: 11400000, guid: 233cd356d5c31a74d8e3044b0006cee0, type: 2}
+  - {fileID: 11400000, guid: f281991073fed5a4aacb0cd7afc13417, type: 2}
+  discovered: 0
