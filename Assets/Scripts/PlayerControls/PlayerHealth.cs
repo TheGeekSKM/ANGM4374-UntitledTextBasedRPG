@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] int maxHealth = 100;
     [SerializeField] IntSO currentHealth;
+    [SerializeField] AttributeData attributes;
     Coroutine continuousDamageRoutine;
 
     private void Start() {
-        currentHealth.SetValue(maxHealth);
+        currentHealth.SetValue(attributes.Vitality * 10);
     }
 
     public void TakeDamage(int damage)

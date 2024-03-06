@@ -5,23 +5,45 @@ using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody _rigidbody;
-    public float moveSpeed = 5f;
+    public Rigidbody rB;
+    float _moveSpeed;
     public bool Move = false;
     public bool Crouch = false;
     public GameObject Art;
+    public AttributeData attributeData;
 
     Vector3 _moveDirection;
     Coroutine MoveSoundsRoutine;
 
     void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
+        rB = GetComponent<Rigidbody>();
     }
 
     void Start()
     {
         _moveDirection = new Vector3(0, 0, -1); // forward
+        _moveSpeed = attributeData.Agility;
+    }
+
+    void OnEnable()
+    {
+        attributeData.OnAttributeChange += OnAttributeChange;
+    }
+
+    void OnDisable()
+    {
+        attributeData.OnAttributeChange -= OnAttributeChange;
+    }
+
+    void OnAttributeChange(Attributes attribute)
+    {
+        switch (attribute)
+        {
+            case Attributes.Agility:
+                _moveSpeed = attributeData.Agility;
+                break;
+        }
     }
 
     void Update()
@@ -110,11 +132,11 @@ public class PlayerMovement : MonoBehaviour
         if (Move)
         {
             // adds velocity to the rigidbody in local space
-            _rigidbody.velocity = _moveDirection * moveSpeed;
+            rB.velocity = _moveDirection * _moveSpeed;
         }
         else
         {
-            _rigidbody.velocity = Vector3.zero;
+            rB.velocity = Vector3.zero;
         }
     }
 }
