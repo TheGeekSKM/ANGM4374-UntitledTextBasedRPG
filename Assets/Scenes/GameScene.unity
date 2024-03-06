@@ -8654,11 +8654,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c694f8560c4f5724d9360f2abeeb18cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 1265980364}
-  moveSpeed: 5
+  rB: {fileID: 0}
   Move: 0
   Crouch: 0
   Art: {fileID: 1548844479}
+  attributeData: {fileID: 11400000, guid: 677874751225fc24880ed23d9c893237, type: 2}
 --- !u!54 &1265980364
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8714,8 +8714,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b630d1c801fa0542a73aa672681b77a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   currentHealth: {fileID: 11400000, guid: 43144fb3a688b5648a73cedd35f3801b, type: 2}
+  attributes: {fileID: 11400000, guid: 677874751225fc24880ed23d9c893237, type: 2}
 --- !u!1 &1315569047
 GameObject:
   m_ObjectHideFlags: 0

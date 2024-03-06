@@ -116,6 +116,41 @@ public class GameController : MonoBehaviour
         Debug.Log("Animating GameListenPanel Outro");
         if (!gameListenPanel) return;
         gameListenPanel.GetComponent<RectTransform>().DOAnchorPosY(gameListenPanelYPos, time).SetEase(Ease.OutCubic);
+
+        var playerPos = playerMovement.transform.position;
+        var enemyPos = enemyController.transform.position;
+        var direction = enemyPos - playerPos;
+
+        int distance = Mathf.RoundToInt(direction.magnitude / 5) * 5;
+        direction.Normalize();
+        
+        if (direction.z > 0)
+        {
+            if (direction.x > 0)
+            {
+                AddNotification("The monster sounds like its behind me and to the left...");
+                AddNotification($"I think it's about {Random.Range(distance - 10, distance + 10)}ft away.\n");
+            }
+            else if (direction.x < 0)
+            {
+                AddNotification("The monster sounds like its behind me and to the right...");
+                AddNotification($"I think it's about {Random.Range(distance - 10, distance + 10)}ft away.\n");
+            }
+        }
+        else if (direction.z < 0)
+        {
+            if (direction.x > 0)
+            {
+                AddNotification("The monster sounds like its in front of me and to the left...");
+                AddNotification($"I think it's about {Random.Range(distance - 10, distance + 10)}ft away.\n");
+            }
+            else if (direction.x < 0)
+            {
+                AddNotification("The monster sounds like its in front of me and to the right...");
+                AddNotification($"I think it's about {Random.Range(distance - 10, distance + 10)}ft away.\n");
+            }
+        }
+
     }
 
     public void AnimateRoomInventoryPanelIntro(float time = 0.5f)

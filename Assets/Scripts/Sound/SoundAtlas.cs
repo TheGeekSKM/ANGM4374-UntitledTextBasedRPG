@@ -17,7 +17,7 @@ public class SoundAtlas : MonoBehaviour
     {
         get
         {
-            return PlayerFootstepSounds[Random.Range(0, PlayerFootstepSounds.Length)];
+            return PlayerFootstepSounds[Random.Range(0, PlayerFootstepSounds.Length - 1)];
         }
     }
 
@@ -25,7 +25,7 @@ public class SoundAtlas : MonoBehaviour
     {
         get
         {
-            return PlayerTurnSounds[Random.Range(0, PlayerTurnSounds.Length)];
+            return PlayerTurnSounds[Random.Range(0, PlayerTurnSounds.Length - 1)];
         }
     }
 
@@ -33,7 +33,7 @@ public class SoundAtlas : MonoBehaviour
     {
         get
         {
-            return MonsterFootstepSounds[Random.Range(0, MonsterFootstepSounds.Length)];
+            return MonsterFootstepSounds[Random.Range(0, MonsterFootstepSounds.Length - 1)];
         }
     }
 
@@ -41,7 +41,7 @@ public class SoundAtlas : MonoBehaviour
     {
         get
         {
-            return MonsterGrowlSounds[Random.Range(0, MonsterGrowlSounds.Length)];
+            return MonsterGrowlSounds[Random.Range(0, MonsterGrowlSounds.Length - 1)];
         }
     }
  
