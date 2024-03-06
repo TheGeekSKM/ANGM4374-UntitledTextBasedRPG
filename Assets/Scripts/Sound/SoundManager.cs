@@ -6,6 +6,7 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
     [SerializeField] GameObject SoundPrefab;
+    [SerializeField] GameObject EnemySoundPrefab;
 
     void Awake()
     {
@@ -28,6 +29,12 @@ public class SoundManager : MonoBehaviour
     public void Sound(Vector3 location, SoundData soundData)
     {
         GameObject sound = Instantiate(SoundPrefab, location, Quaternion.identity);
+        sound.GetComponent<Sound>().SetSound(soundData);
+    }
+
+    public void SoundEnemy(Transform soundSource, SoundData soundData)
+    {
+        GameObject sound = Instantiate(EnemySoundPrefab, soundSource.position, Quaternion.identity);
         sound.GetComponent<Sound>().SetSound(soundData);
     }
 }

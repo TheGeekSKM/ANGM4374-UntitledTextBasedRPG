@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9169459618484668788}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,8 +44,8 @@ GameObject:
   - component: {fileID: 4560279362353963053}
   - component: {fileID: 320974123681797037}
   - component: {fileID: 2735631417311760540}
-  m_Layer: 0
-  m_Name: SoundTrigger
+  m_Layer: 10
+  m_Name: EnemySoundTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,7 +203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8988365621695851235}
   - component: {fileID: 6898909571042247922}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

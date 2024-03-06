@@ -25,6 +25,7 @@ MonoBehaviour:
 
     You cannot
     see anything...'
-  RoomDescription: You're back in the room you woke up in. You can't see anything
-    in the room, but you can smell it. Somehow, you feel safer than before.
-  NPCs: []
+  RoomDescription: I'm in the same room as Harsha...
+  NPC: {fileID: 0}
+  Loot: []
+  discovered: 1

@@ -100,6 +100,8 @@ public class EnemyController : MonoBehaviour
             attackRoutine = StartCoroutine(AttackRoutine());
         }
 
+        StartMonsterSounds();
+
     }
 
     IEnumerator AttackRoutine()
@@ -140,6 +142,7 @@ public class EnemyController : MonoBehaviour
 
     void EnemyIdleWalk()
     {
+        Debug.Log("EnemyIdleWalk");
         if (walkTimer != null) StopCoroutine(walkTimer);
         if (walkSoundsRoutine != null) StopCoroutine(walkSoundsRoutine);
         target = transform.position;
@@ -173,11 +176,9 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator WalkSounds()
     {
-        while (walking)
-        {
-            SoundManager.Instance.Sound(transform, SoundAtlas.Instance.MonsterFootstepSound);
-            yield return new WaitForSeconds(1f);
-        }
+        Debug.Log("Enemy is walking");
+        SoundManager.Instance.SoundEnemy(transform, SoundAtlas.Instance.MonsterFootstepSound);
+        yield return new WaitForSeconds(1f);
     }
 
     IEnumerator WalkTimer()
@@ -245,7 +246,7 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator MonsterSounds()
     {
-        SoundManager.Instance.Sound(transform, SoundAtlas.Instance.MonsterGrowlSound);
+        SoundManager.Instance.SoundEnemy(transform, SoundAtlas.Instance.MonsterGrowlSound);
         yield return new WaitForSeconds(Random.Range(3, 20));
     }
 

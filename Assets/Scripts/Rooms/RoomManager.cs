@@ -5,11 +5,9 @@ using UnityEngine;
 public class RoomManager : MonoBehaviour
 {
     public RoomData CurrentRoom;
-    public RoomData PreviousRoom;
 
     public void SetCurrentRoom(RoomData room)
     {
-        if (CurrentRoom != null) PreviousRoom = CurrentRoom;
         CurrentRoom = room;
         RoomEntered();
     }
@@ -45,32 +43,31 @@ public class RoomManager : MonoBehaviour
             GameController.Instance.AddNotification("I've been in this room before.");
             GameController.Instance.AddNotification($"{CurrentRoom.RoomDescription}\n");
 
-            RoomNPC();
+            // RoomNPC();
 
         }
 
 
     }
 
-    public void RoomNPC()
-    {
-        if (CurrentRoom.NPC != null && CurrentRoom.NPC.InteractionCount == 0)
-        {
-            GameController.Instance.AddNotification($"I think I just ran in to someone in the {CurrentRoom.RoomName}.");
-            DialogueManager.Instance.StartDialogue(CurrentRoom.NPC.IntroDialogueMoment);
-            CurrentRoom.NPC.InteractionCount++;
-        }
-        else if (CurrentRoom.NPC != null && CurrentRoom.NPC.InteractionCount > 0)
-        {
-            GameController.Instance.AddNotification($"Oh damn it! I ran in to someone by accident!");
-            GameController.Instance.AddNotification($"{CurrentRoom.NPC.name}: {CurrentRoom.NPC.InteractionLines[Random.Range(0, CurrentRoom.NPC.InteractionLines.Count)].DialogueLine}");
-        }
-    }
+    // public void RoomNPC()
+    // {
+    //     if (CurrentRoom.NPC != null && CurrentRoom.NPC.InteractionCount == 0)
+    //     {
+    //         GameController.Instance.AddNotification($"I think I just ran in to someone in the {CurrentRoom.RoomName}.");
+    //         DialogueManager.Instance.StartDialogue(CurrentRoom.NPC.IntroDialogueMoment);
+    //         CurrentRoom.NPC.InteractionCount++;
+    //     }
+    //     else if (CurrentRoom.NPC != null && CurrentRoom.NPC.InteractionCount > 0)
+    //     {
+    //         GameController.Instance.AddNotification($"Oh damn it! I ran in to someone by accident!");
+    //         GameController.Instance.AddNotification($"{CurrentRoom.NPC.name}: {CurrentRoom.NPC.InteractionLines[Random.Range(0, CurrentRoom.NPC.InteractionLines.Count)].DialogueLine}");
+    //     }
+    // }
 
     public void RoomExited()
     {
         GameController.Instance.AddNotification($"I think I just left the {CurrentRoom.RoomName}.\n");
-        PreviousRoom = CurrentRoom;
         CurrentRoom = null;
     }
 }

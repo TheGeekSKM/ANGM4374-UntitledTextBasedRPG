@@ -18,13 +18,14 @@ public class RoomTrigger : MonoBehaviour
         if (roomManager == null) return;
 
         roomManager.SetCurrentRoom(roomData);
+        Debug.Log("RoomTrigger: " + roomData.RoomName);
     }
 
     void OnTriggerExit(Collider other)
     {
-        var roomManager = other.gameObject.GetComponent<RoomManager>();
-        if (roomManager == null) return;
-        roomManager.RoomExited();
+        // var roomManager = other.gameObject.GetComponent<RoomManager>();
+        // if (roomManager == null) return;
+        // roomManager.RoomExited();
     }
 
    

@@ -10,7 +10,11 @@ public class SoundData: ScriptableObject
     { 
         get 
         {
-            return Sounds[Random.Range(0, Sounds.Length)];
+            if (Sounds.Length == 1)
+            {
+                return Sounds[0];
+            }
+            return Sounds[Random.Range(0, Sounds.Length - 1)];
         } 
     }
     [Range(0, 1)] public float Volume;

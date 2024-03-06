@@ -24,11 +24,5 @@ MonoBehaviour:
     wall. '
   RoomDescription: I'm in the Main Hall now.
   NPC: {fileID: 0}
-  Loot:
-  - {fileID: 11400000, guid: 503972d83b725b74aaae9c3e5892ece9, type: 2}
-  - {fileID: 11400000, guid: 42a49cc6b14f99249962aaed1f0d5147, type: 2}
-  - {fileID: 11400000, guid: 6e9ec33d1f2359748a2577c944c76a1b, type: 2}
-  - {fileID: 11400000, guid: 6c576972ec9d95749aeb5abae31fbcc7, type: 2}
-  - {fileID: 11400000, guid: ed2bd7635cb89ee47b7e5cabad47aa61, type: 2}
-  - {fileID: 11400000, guid: a69d06f022aca6640aeab89f2fb22b02, type: 2}
-  discovered: 1
+  Loot: []
+  discovered: 0
