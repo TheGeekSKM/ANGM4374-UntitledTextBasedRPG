@@ -19,9 +19,3 @@ MonoBehaviour:
   PickupSound: {fileID: 0}
   UseageSound: {fileID: 0}
   DiscardedSound: {fileID: 0}
-  OnUse:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDiscard:
-    m_PersistentCalls:
-      m_Calls: []
