@@ -142,7 +142,8 @@ public class EnemyController : MonoBehaviour
 
     void EnemyIdleWalk()
     {
-        Debug.Log("EnemyIdleWalk");
+        // Debug.Log("EnemyIdleWalk");
+        if (!canWalk) return;
         if (walkTimer != null) StopCoroutine(walkTimer);
         if (walkSoundsRoutine != null) StopCoroutine(walkSoundsRoutine);
         target = transform.position;
@@ -176,7 +177,7 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator WalkSounds()
     {
-        Debug.Log("Enemy is walking");
+        // Debug.Log("Enemy is walking");
         SoundManager.Instance.SoundEnemy(transform, SoundAtlas.Instance.MonsterFootstepSound);
         yield return new WaitForSeconds(1f);
     }
@@ -232,6 +233,7 @@ public class EnemyController : MonoBehaviour
 
     public void StartMonsterSounds()
     {
+        Debug.Log("Starting Monster Sounds");
         if (monsterSoundsRoutine == null) monsterSoundsRoutine = StartCoroutine(MonsterSounds());
         else
         {
@@ -255,7 +257,7 @@ public class EnemyController : MonoBehaviour
     {
         if (!canWalk) return;
 
-        Debug.Log("Enemy is targeting");
+        // Debug.Log("Enemy is targeting");
         navMeshAgent.SetDestination(target);
         walking = true;
     }

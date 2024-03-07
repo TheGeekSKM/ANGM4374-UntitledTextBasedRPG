@@ -7,6 +7,7 @@ public class RoomInventoryManager : MonoBehaviour
     public static RoomInventoryManager Instance {get; private set;}
     public GameObject RoomContentPanel;
     public GameObject ItemDisplayPrefab;
+    public RoomData CurrentRoom;
 
     public List<ItemData> RoomDisplayItems;
 
@@ -24,15 +25,17 @@ public class RoomInventoryManager : MonoBehaviour
 
     public void OpenCurrentRoomInventory()
     {
-        var currentRoom = GameController.Instance.playerMovement.GetComponent<RoomManager>().CurrentRoom;
-        if (currentRoom == null) return;
-        if (currentRoom.Loot.Count == 0) return;
+        CurrentRoom = GameController.Instance.playerMovement.GetComponent<RoomManager>().CurrentRoom;
+        if (CurrentRoom == null) return;
+        if (CurrentRoom.Loot.Count == 0) return;
 
-        OpenRoomInventory(currentRoom);
+        OpenRoomInventory(CurrentRoom);
     }
 
     public void OpenRoomInventory(RoomData roomData)
     {
+
+        CurrentRoom = roomData;
         // Clear the room content panel
         foreach (Transform child in RoomContentPanel.transform)
         {

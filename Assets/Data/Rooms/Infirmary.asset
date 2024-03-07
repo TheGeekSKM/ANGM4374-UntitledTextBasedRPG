@@ -21,4 +21,4 @@ MonoBehaviour:
   NPC: {fileID: 0}
   Loot:
   - {fileID: 11400000, guid: e9a82805980497549828cb2d54ce9ef6, type: 2}
-  discovered: 0
+  discovered: 1

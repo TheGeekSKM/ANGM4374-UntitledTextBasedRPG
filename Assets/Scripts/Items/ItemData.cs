@@ -17,19 +17,14 @@ public class ItemData : ScriptableObject
     public SoundData UseageSound;
     public SoundData DiscardedSound;
 
-    public UnityEvent OnPickup;
-    public UnityEvent OnUse;
-    public UnityEvent OnDiscard;
 
     public virtual void PickupItem()
     {
-        OnPickup?.Invoke();
+
     }
 
     public virtual void UseItem()
     {
-        OnUse?.Invoke();
-
         if (UseageDescriptions.Count > 0)
         {
             GameController.Instance.AddNotification(UseageDescriptions[Random.Range(0, UseageDescriptions.Count)]);
@@ -43,7 +38,7 @@ public class ItemData : ScriptableObject
 
     public virtual void DiscardItem()
     {
-        OnDiscard?.Invoke();
+
     }
 
 }

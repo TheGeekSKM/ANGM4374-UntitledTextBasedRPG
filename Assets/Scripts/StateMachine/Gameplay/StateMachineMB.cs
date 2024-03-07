@@ -41,18 +41,18 @@ public class StateMachineMB : MonoBehaviour
 
     void ChangeStateSequence(State newState)
     {
-        Debug.Log("Changing state to " + newState.GetType().Name);
+        // Debug.Log("Changing state to " + newState.GetType().Name);
         _inTransition = true;
 
         CurrentState?.Exit();
         StoreStateAsPrevious(newState);
 
         CurrentState = newState;
-        Debug.Log("Current state is " + CurrentState.GetType().Name);
+        // Debug.Log("Current state is " + CurrentState.GetType().Name);
 
         CurrentState?.Enter();
         _inTransition = false;
-        Debug.Log("State changed to " + CurrentState.GetType().Name);
+        // Debug.Log("State changed to " + CurrentState.GetType().Name);
     }
 
 

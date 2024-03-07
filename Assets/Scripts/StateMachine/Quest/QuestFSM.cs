@@ -7,6 +7,7 @@ public class QuestFSM : StateMachineMB
     QuestController questController;
 
     public QuestIntroBandage QuestIntroBandage {get ; private set;}
+    public QuestReturnBandage QuestReturnBandage {get ; private set;}
 
     void OnValidate()
     {
@@ -16,9 +17,16 @@ public class QuestFSM : StateMachineMB
         }
     }
 
+    void Start()
+    {
+        ChangeState(QuestIntroBandage);
+    
+    }
+
     void Awake()
     {
         QuestIntroBandage = new QuestIntroBandage(questController, this);
+        QuestReturnBandage = new QuestReturnBandage(questController, this);
     }
 
     

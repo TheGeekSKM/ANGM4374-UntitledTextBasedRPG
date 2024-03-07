@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Harsha_DM0_09
   m_EditorClassIdentifier: 
   NPCData: {fileID: 11400000, guid: 298143a37cee06c448aff1928ead8711, type: 2}
-  DialogueLine: Lucky for you, I have a Seeker's Whistle. Blow into it and you'll
-    be able to hear whatever you're looking for even in the darkest voids of this
-    wretched maze. I'd be careful using it, though. The stupid flute isn't quiet...
-  TypeDelay: 0.05
+  DialogueLine: Lucky for you, I have a Seeker's Whistle. Open your inventory and
+    blow into it and you'll be able to hear whatever you're looking for even in the
+    darkest voids of this wretched maze. I'd be careful using it, though. The stupid
+    flute isn't quiet...
+  DelayAfterTyping: 2

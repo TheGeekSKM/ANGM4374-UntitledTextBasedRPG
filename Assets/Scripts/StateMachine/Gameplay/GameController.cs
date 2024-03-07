@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour
     public PlayerHealth playerHealth;
     public TextMeshProUGUI playerMoveText;
     public List<Button> playerButtonsToDisable;
+    public GameObject attackRangeObject;
 
     [Header("Enemy")]
     public EnemyController enemyController;
@@ -200,7 +201,7 @@ public class GameController : MonoBehaviour
     {
         if (move)
         {
-            Debug.Log("Player is moving");
+            // Debug.Log("Player is moving");
             playerMoveText.text = "Stop Moving";
 
             foreach (Button button in playerButtonsToDisable)
@@ -210,7 +211,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Player is not moving");
+            // Debug.Log("Player is not moving");
             playerMoveText.text = "Move Forward" + "\n(-1 Health)";
             foreach (Button button in playerButtonsToDisable)
             {
@@ -308,5 +309,16 @@ public class GameController : MonoBehaviour
     {
         var rT = extraActionsPanel.GetComponent<RectTransform>();
         rT.DOAnchorPosY(extraActionPanelYPos, 0.5f);
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void Attack(float damage, float range)
+    {
+        var attackObj = Instantiate(attackRangeObject, playerMovement.transform.position, Quaternion.identity);
+        attackObj.GetComponent<AttackTrigger>().SetAttack(damage, range);
     }
 }

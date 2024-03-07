@@ -56,7 +56,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("TODO: Die() method in PlayerHealth.cs");
+        GameController.Instance.GameOver();
     }
 
 

@@ -44,6 +44,7 @@ public class ItemDisplay : MonoBehaviour
         {
             // Remove the item from the room
             RoomInventoryManager.Instance.RoomDisplayItems.Remove(_itemData);
+            RoomInventoryManager.Instance.CurrentRoom.Loot.Remove(_itemData);
 
             // play the pickup sound
             if (_itemData.PickupSound != null)

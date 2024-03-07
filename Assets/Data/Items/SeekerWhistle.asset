@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e37ca963289f64f920f4e118d8a51e, type: 3}
+  m_Name: SeekerWhistle
+  m_EditorClassIdentifier: 
+  ItemName: Seeker's Whistle
+  UseageDescriptions:
+  - I blew into the whistle.
+  - I blew into the whistle. It tastes kinda bad...
+  - I blew into the whistle. I should probably hide...maybe...?
+  DamageRange: {x: 0, y: 0}
+  Durability: -1
+  PickupSound: {fileID: 0}
+  UseageSound: {fileID: 0}
+  DiscardedSound: {fileID: 0}

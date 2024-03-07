@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c2314ef33f928a459c128927b5bf0b0, type: 3}
   m_Name: PlayerTurn1
   m_EditorClassIdentifier: 
-  Sound: {fileID: 8300000, guid: e39917d039e1956479681d32fb19966b, type: 3}
+  Sounds:
+  - {fileID: 8300000, guid: e39917d039e1956479681d32fb19966b, type: 3}
   Volume: 0.598
   Echo: 1

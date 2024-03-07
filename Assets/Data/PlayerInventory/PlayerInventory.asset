@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8478b2397cca89248bc2f63a6048e8e1, type: 3}
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
-  Items: []
+  Items:
+  - {fileID: 11400000, guid: c58a1471a9c7fc84481ca2b0266f08c7, type: 2}
   MaxItems: 10
+  OnItemAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemRemoved:
+    m_PersistentCalls:
+      m_Calls: []

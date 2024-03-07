@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RoomManager : MonoBehaviour
 {
     public RoomData CurrentRoom;
+
+    public UnityAction<RoomData> OnRoomEnter;
 
     public void SetCurrentRoom(RoomData room)
     {
@@ -32,6 +35,7 @@ public class RoomManager : MonoBehaviour
 
     void RoomEntered()
     {
+        OnRoomEnter?.Invoke(CurrentRoom);
         if (CurrentRoom.discovered == false)
         {
             CurrentRoom.discovered = true;

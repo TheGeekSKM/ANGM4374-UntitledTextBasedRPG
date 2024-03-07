@@ -10,9 +10,9 @@ public class SoundData: ScriptableObject
     { 
         get 
         {
-            if (Sounds.Length == 1)
+            if (Sounds.Length == 0)
             {
-                return Sounds[0];
+                return null;
             }
             return Sounds[Random.Range(0, Sounds.Length - 1)];
         } 

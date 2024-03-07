@@ -26,6 +26,7 @@ public class DialogueManager : MonoBehaviour
     public void StartNewDialogue(DialogueMomentData dialogueMoment, float dialogueStartDelay = 0.5f)
     {
         if (!dialogueFinished) return;
+        CurrentDialogueMoment = dialogueMoment;
         StartCurrentDialogue(dialogueStartDelay);
     }
 

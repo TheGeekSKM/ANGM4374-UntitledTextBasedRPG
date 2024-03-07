@@ -7,7 +7,7 @@ public class ItemUseDisplay : ItemDisplay
     public override void OnButtonClick()
     {
         _itemData.UseItem();
-        if (_itemData.Durability <= 0)
+        if (_itemData.Durability == 0)
         {
             Destroy(gameObject);
         }
